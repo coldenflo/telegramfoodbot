@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню</title>
+    <!-- Подключение шрифта Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Подключение Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .menu-item {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .menu-item h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 15px;
+        }
+        .menu-item p {
+            margin: 0 15px 15px;
+            font-size: 14px;
+            color: #777;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: 600;
+            margin-left: 15px;
+            color: #28a745;
+        }
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+        .menu-footer button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .menu-footer button:hover {
+            background-color: #0056b3;
+        }
+        .options {
+            margin: 15px;
+        }
+        .options h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .options-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .options-item span {
+            font-size: 14px;
+        }
+        .options-item button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Меню ChatBurger 🍔</h1>
+    <div class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+</header>
+
+<!-- Контейнер для меню -->
+<div class="menu-container">
+    <div class="menu-item">
+        <img src="https://via.placeholder.com/250" alt="Бургер с котлетой из рыбы">
+        <h2>Бургер с котлетой из рыбы</h2>
+        <p>Очень вкусный бургер с сочной рыбой и свежими овощами.</p>
+        <div class="options">
+            <h3>Выберите рыбу</h3>
+            <div class="options-item">
+                <span>Судак</span>
+                <button>+ 330 ₽</button>
+            </div>
+            <div class="options-item">
+                <span>Семга</span>
+                <button>+ 360 ₽</button>
+            </div>
+        </div>
+        <div class="options">
+            <h3>Дополнительно</h3>
+            <div class="options-item">
+                <span>Соус тартар</span>
+                <button>+ 70 ₽</button>
+            </div>
+            <div class="options-item">
+                <span>Кетчуп</span>
+                <button>+ 60 ₽</button>
+            </div>
+        </div>
+        <div class="menu-footer">
+            <span class="price">400 ₽</span>
+            <button>Добавить в корзину</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
