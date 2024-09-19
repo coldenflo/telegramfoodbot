@@ -30,7 +30,6 @@ const MenuCategory = ({ selectedCategory, setSelectedCategory }) => {
 
 export default MenuCategory;
 
-// Стили для контейнера категорий и кнопок
 const CategoryContainer = styled.div`
   display: flex;
   overflow-x: auto;
