@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/telegramfoodbot/static/js/main.b0675865.js",
+    "index.html": "/telegramfoodbot/index.html",
+    "main.b0675865.js.map": "/telegramfoodbot/static/js/main.b0675865.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b0675865.js"
+  ]
+}
