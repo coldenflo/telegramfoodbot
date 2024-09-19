@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
 
   input, textarea {
     font-family: 'Montserrat', sans-serif;
+    background-color: #f7f7f7;
   }
 `;
 

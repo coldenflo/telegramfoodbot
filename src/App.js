@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+import Navbar from './components/Navbar';
 import MenuCategory from './components/MenuCategory';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
@@ -7,6 +9,9 @@ import styled from 'styled-components';
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState('Бургеры');
   const [cartItems, setCartItems] = useState([]);
+  const [activeCategory, setActiveCategory] = useState('burgers');
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   const menuItems = {
     Бургеры: [
