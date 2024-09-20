@@ -1,22 +1,32 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Cart = ({ cartItems }) => {
+// Главный компонент корзины
+const Cart = ({ cartItems, updateItemQuantity, removeItem }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  // Функция для отображения корзины
+  const handleCartToggle = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   return (
     <>
-      <CartIconContainer onClick={() => setIsCartOpen(!isCartOpen)}>
+      <CartIconContainer onClick={handleCartToggle}>
         <CartIcon>🛒</CartIcon>
         {totalItems > 0 && <ItemCount>{totalItems}</ItemCount>}
       </CartIconContainer>
 
       {isCartOpen && (
         <CartContainer>
-          <h2>Корзина</h2>
+          <CartHeader>
+            <h2>Корзина</h2>
+            <CloseButton onClick={handleCartToggle}>Закрыть</CloseButton>
+          </CartHeader>
+
           <CartItemsContainer>
             {cartItems.length === 0 ? (
               <p>Ваша корзина пуста</p>
@@ -28,14 +38,16 @@ const Cart = ({ cartItems }) => {
                     <p>{item.price}₽</p>
                   </ItemDetails>
                   <QuantityControls>
-                    <button>-</button>
+                    <button onClick={() => updateItemQuantity(item.id, item.quantity - 1)}>-</button>
                     <span>{item.quantity}</span>
-                    <button>+</button>
+                    <button onClick={() => updateItemQuantity(item.id, item.quantity + 1)}>+</button>
                   </QuantityControls>
+                  <RemoveButton onClick={() => removeItem(item.id)}>Удалить</RemoveButton>
                 </CartItem>
               ))
             )}
           </CartItemsContainer>
+
           <TotalContainer>
             <p>Итого: {total}₽</p>
           </TotalContainer>
@@ -47,6 +59,7 @@ const Cart = ({ cartItems }) => {
 
 export default Cart;
 
+// Стилизация корзины и элементов
 const CartIconContainer = styled.div`
   position: fixed;
   bottom: 20px;
@@ -82,35 +95,41 @@ const ItemCount = styled.div`
 const CartContainer = styled.div`
   position: fixed;
   bottom: 0;
+  left: 0;
   right: 0;
-  width: 300px;
   background-color: #fff;
-  padding: 10px;
+  padding: 20px;
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
-  max-height: 400px;
+  max-height: 80vh;
   overflow-y: auto;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+`;
 
-  h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
+const CartHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+`;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+const CloseButton = styled.button`
+  background-color: #ff5c5c;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 
-  ::-webkit-scrollbar {
-    width: 0px;
+  &:hover {
+    background-color: #ff1f1f;
   }
 `;
 
 const CartItemsContainer = styled.div`
-  max-height: 250px;
+  max-height: 50vh;
   overflow-y: auto;
-  margin-bottom: 10px;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -120,25 +139,21 @@ const CartItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-
-  p {
-    margin: 0;
-  }
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
 `;
 
 const ItemDetails = styled.div`
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  p {
-    margin: 0;
-  }
+  justify-content: space-between;
+  padding-right: 10px;
 `;
 
 const QuantityControls = styled.div`
   display: flex;
   align-items: center;
-
+  
   button {
     background-color: #ffcc00;
     border: none;
@@ -154,6 +169,19 @@ const QuantityControls = styled.div`
 
   span {
     font-size: 16px;
+  }
+`;
+
+const RemoveButton = styled.button`
+  background-color: #ff5c5c;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ff1f1f;
   }
 `;
 
