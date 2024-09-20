@@ -51,6 +51,18 @@ const App = () => {
     setCartItems((prevItems) => [...prevItems, item]);
   };
 
+  const updateItemQuantity = (itemId, newQuantity) => {
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === itemId ? { ...item, quantity: Math.max(1, newQuantity) } : item
+      )
+    );
+  };
+  
+  const removeItem = (itemId) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
+  
   return (
     <AppContainer>
       <MenuCategory selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
